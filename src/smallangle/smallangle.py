@@ -1,20 +1,29 @@
 import click
 import numpy as np
-from numpy import pi
 import pandas as pd
+from numpy import pi
 
 
+@click.group()
+def smallangle_group():
+    pass
+
+
+@smallangle_group.command
+@click.option("-n", "--number", default=10)
 def sin(number):
-    x = np.linspace(0, 2 * pi, number)
+    x = np.linspace(0, 2 * pi, int(number))
     df = pd.DataFrame({"x": x, "sin (x)": np.sin(x)})
     print(df)
 
 
+@smallangle_group.command
+@click.option("-n", "--number", default=10)
 def tan(number):
-    x = np.linspace(0, 2 * pi, number)
+    x = np.linspace(0, 2 * pi, int(number))
     df = pd.DataFrame({"x": x, "tan (x)": np.tan(x)})
     print(df)
 
 
 if __name__ == "__main__":
-    sin(10)
+    smallangle_group()
